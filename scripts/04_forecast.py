@@ -215,8 +215,27 @@ with OUT.open("w", newline="") as f:
 # ------------------------------------------------------------------ JSON enriquecido para la web (raw/ no se sube al repo)
 import json
 STAFF_PER = 80  # 1 persona en puerta por cada 80 asistentes esperados
+
+# breakdown por tipo de ticket para cada evento agosto: cuántos vendidos, cuántos esperados
+# reconstruimos usando prob_for_ticket + factor del evento
+def build_type_breakdown(e: dict, herm_rate, kind: str) -> dict:
+    factor = event_factor(kind, herm_rate, e)
+    br: dict = {}
+    for t in tickets_by_event.get(e["event_id"], []):
+        tt = t["ticket_type"] or "Otro"
+        if tt not in br:
+            br[tt] = {"sold": 0, "expected": 0.0}
+        br[tt]["sold"] += 1
+        p_base = prob_for_ticket(t)
+        p = max(0.05, min(0.98, p_base * factor))
+        br[tt]["expected"] += p
+    for tt in br:
+        br[tt]["expected"] = round(br[tt]["expected"], 1)
+    return br
+
 web_rows = []
 row_by_eid = {r[0]: r for r in rows_out}
+global_by_type: dict[str, dict] = {}
 for eid, e in events.items():
     if e["month"] != "agosto" or eid not in row_by_eid:
         continue
@@ -224,6 +243,14 @@ for eid, e in events.items():
     tickets_sold = int(e.get("tickets_sold") or 0)
     capacity = int(e.get("capacity") or 0)
     staff = max(2, math.ceil(expected / STAFF_PER))
+    herm_rate, herm_sold = hermanos_rate(e)
+    kind = classify_event(e, herm_rate, herm_sold)
+    type_breakdown = build_type_breakdown(e, herm_rate, kind)
+    for tt, d in type_breakdown.items():
+        if tt not in global_by_type:
+            global_by_type[tt] = {"sold": 0, "expected": 0.0}
+        global_by_type[tt]["sold"] += d["sold"]
+        global_by_type[tt]["expected"] += d["expected"]
     web_rows.append({
         "event_id": eid,
         "title": e.get("title", ""),
@@ -239,9 +266,77 @@ for eid, e in events.items():
         "p90": p90,
         "staff_puerta": staff,
         "is_residency": e.get("is_residency") == "true",
+        "kind": kind,
+        "type_breakdown": type_breakdown,
     })
 web_rows.sort(key=lambda r: r["starts_at"])
-(ROOT / "data.json").write_text(json.dumps(web_rows, ensure_ascii=False, indent=2))
+for tt in global_by_type:
+    global_by_type[tt]["expected"] = round(global_by_type[tt]["expected"], 1)
+
+# ------------------------------------------------------------------ stats de matching para el dashboard
+match_counts_by_conf: dict[str, int] = {}
+total_sales = 0
+matched_total = 0
+with (RAW / "ft_sales.csv").open() as f:
+    for _ in csv.DictReader(f):
+        total_sales += 1
+if mp.exists():
+    with mp.open() as f:
+        for r in csv.DictReader(f):
+            c = f"{float(r['confidence']):.2f}"
+            match_counts_by_conf[c] = match_counts_by_conf.get(c, 0) + 1
+            matched_total += 1
+match_stats = {
+    "total_sales": total_sales,
+    "matched": matched_total,
+    "unmatched": total_sales - matched_total,
+    "by_confidence": match_counts_by_conf,
+}
+
+# backtest metrics: correr rápido leave-one-out y guardar métricas globales
+def backtest_summary():
+    per = []
+    for target in julio_events:
+        real = int(target["checked_in_count"] or 0)
+        tks = tickets_by_event.get(target["event_id"], [])
+        if not tks:
+            continue
+        probs, kind, _ = event_probs(target, exclude_self_for_herm=True)
+        mean = sum(probs) + bias_emp.get(kind, 0.0)
+        var_b = sum(p*(1-p) for p in probs)
+        sigma_use = max(math.sqrt(var_b), sigma_emp.get(kind, math.sqrt(var_b)))
+        sold = len(probs)
+        expected = round(max(0, min(sold, mean)))
+        p10 = max(0, round(mean - Z80*sigma_use))
+        p90 = min(sold, round(mean + Z80*sigma_use))
+        per.append({
+            "cov": 1 if p10 <= real <= p90 else 0,
+            "ape": abs(expected - real)/real if real > 0 else 0,
+            "err": expected - real,
+        })
+    n = len(per)
+    return {
+        "n_events": n,
+        "coverage_p10_p90": round(sum(x["cov"] for x in per)/n * 100, 1),
+        "mape": round(sum(x["ape"] for x in per)/n * 100, 1),
+        "bias_mean": round(sum(x["err"] for x in per)/n, 1),
+    }
+
+payload = {
+    "events": web_rows,
+    "global_by_type": global_by_type,
+    "match_stats": match_stats,
+    "backtest": backtest_summary(),
+    "meta": {
+        "generated_at": None,
+        "n_events": len(web_rows),
+        "total_expected": sum(r["expected_attendance"] for r in web_rows),
+        "total_sold": sum(r["tickets_sold"] for r in web_rows),
+    }
+}
+from datetime import datetime, timezone
+payload["meta"]["generated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+(ROOT / "data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2))
 
 print(f"[fc] {len(rows_out)} eventos de agosto proyectados", file=sys.stderr)
 print(f"[fc] mix por tipo: {dict(diag_counter)}", file=sys.stderr)

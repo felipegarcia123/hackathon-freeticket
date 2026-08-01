@@ -1,482 +1,1007 @@
-[
-  {
-    "event_id": "ft_evt_0040",
-    "title": "Trasnoche Cali — residencia sábado",
-    "artist": "Trasnoche Cali",
-    "venue": "Sala Beethoven",
-    "city": "Cali",
-    "starts_at": "2026-08-01T20:00:00+00:00",
-    "weekday": "sábado",
-    "capacity": 150,
-    "tickets_sold": 118,
-    "expected_attendance": 99,
-    "p10": 76,
-    "p90": 118,
-    "staff_puerta": 2,
-    "is_residency": true
+{
+  "events": [
+    {
+      "event_id": "ft_evt_0040",
+      "title": "Trasnoche Cali — residencia sábado",
+      "artist": "Trasnoche Cali",
+      "venue": "Sala Beethoven",
+      "city": "Cali",
+      "starts_at": "2026-08-01T20:00:00+00:00",
+      "weekday": "sábado",
+      "capacity": 150,
+      "tickets_sold": 118,
+      "expected_attendance": 99,
+      "p10": 76,
+      "p90": 118,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 42,
+          "expected": 34.5
+        },
+        "Preferencial": {
+          "sold": 13,
+          "expected": 12.2
+        },
+        "VIP": {
+          "sold": 38,
+          "expected": 32.2
+        },
+        "Cortesía": {
+          "sold": 25,
+          "expected": 15.2
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0058",
+      "title": "Roast de Medianoche — Comedia sin Red",
+      "artist": "Roast de Medianoche",
+      "venue": "Teatro Colsubsidio",
+      "city": "Bogotá",
+      "starts_at": "2026-08-04T19:30:00+00:00",
+      "weekday": "martes",
+      "capacity": 250,
+      "tickets_sold": 232,
+      "expected_attendance": 179,
+      "p10": 160,
+      "p90": 198,
+      "staff_puerta": 3,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 232,
+          "expected": 166.2
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0014",
+      "title": "Micrófono Suelto — residencia martes",
+      "artist": "Micrófono Suelto",
+      "venue": "Ace of Clubs",
+      "city": "Bogotá",
+      "starts_at": "2026-08-04T20:00:00+00:00",
+      "weekday": "martes",
+      "capacity": 220,
+      "tickets_sold": 120,
+      "expected_attendance": 61,
+      "p10": 38,
+      "p90": 84,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 53,
+          "expected": 17.3
+        },
+        "General": {
+          "sold": 50,
+          "expected": 28.4
+        },
+        "Preferencial": {
+          "sold": 7,
+          "expected": 4.0
+        },
+        "VIP": {
+          "sold": 10,
+          "expected": 5.8
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0032",
+      "title": "La Bodega Improvisa — residencia miércoles",
+      "artist": "La Bodega Improvisa",
+      "venue": "La Bodega del Chiste",
+      "city": "Bogotá",
+      "starts_at": "2026-08-05T20:00:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 250,
+      "tickets_sold": 201,
+      "expected_attendance": 158,
+      "p10": 135,
+      "p90": 181,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Preferencial": {
+          "sold": 36,
+          "expected": 32.2
+        },
+        "Cortesía": {
+          "sold": 65,
+          "expected": 41.3
+        },
+        "General": {
+          "sold": 88,
+          "expected": 69.0
+        },
+        "VIP": {
+          "sold": 12,
+          "expected": 10.2
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0023",
+      "title": "Doble Sentido — residencia jueves",
+      "artist": "Doble Sentido",
+      "venue": "La Pascasia",
+      "city": "Medellín",
+      "starts_at": "2026-08-06T20:30:00+00:00",
+      "weekday": "jueves",
+      "capacity": 250,
+      "tickets_sold": 192,
+      "expected_attendance": 163,
+      "p10": 140,
+      "p90": 186,
+      "staff_puerta": 3,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 32,
+          "expected": 21.6
+        },
+        "Preferencial": {
+          "sold": 32,
+          "expected": 27.1
+        },
+        "VIP": {
+          "sold": 35,
+          "expected": 30.8
+        },
+        "General": {
+          "sold": 93,
+          "expected": 78.5
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0056",
+      "title": "Sin Filtro — Especial de Improvisación",
+      "artist": "Sin Filtro",
+      "venue": "Teatro Metropolitano",
+      "city": "Medellín",
+      "starts_at": "2026-08-06T20:30:00+00:00",
+      "weekday": "jueves",
+      "capacity": 450,
+      "tickets_sold": 378,
+      "expected_attendance": 352,
+      "p10": 333,
+      "p90": 371,
+      "staff_puerta": 5,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "General": {
+          "sold": 267,
+          "expected": 240.8
+        },
+        "Preferencial": {
+          "sold": 79,
+          "expected": 72.1
+        },
+        "VIP": {
+          "sold": 30,
+          "expected": 25.4
+        },
+        "Cortesía": {
+          "sold": 2,
+          "expected": 0.9
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0006",
+      "title": "Mala Hora — residencia viernes",
+      "artist": "Mala Hora",
+      "venue": "Casa E",
+      "city": "Bogotá",
+      "starts_at": "2026-08-07T20:30:00+00:00",
+      "weekday": "viernes",
+      "capacity": 180,
+      "tickets_sold": 122,
+      "expected_attendance": 89,
+      "p10": 65,
+      "p90": 112,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 122,
+          "expected": 83.4
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0052",
+      "title": "Segunda Función — Especial de Improvisación",
+      "artist": "Segunda Función",
+      "venue": "Teatro Santiago Londoño",
+      "city": "Pereira",
+      "starts_at": "2026-08-07T20:30:00+00:00",
+      "weekday": "viernes",
+      "capacity": 800,
+      "tickets_sold": 436,
+      "expected_attendance": 310,
+      "p10": 291,
+      "p90": 329,
+      "staff_puerta": 4,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 149,
+          "expected": 84.2
+        },
+        "VIP": {
+          "sold": 34,
+          "expected": 26.6
+        },
+        "General": {
+          "sold": 193,
+          "expected": 142.4
+        },
+        "Preferencial": {
+          "sold": 60,
+          "expected": 43.7
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0060",
+      "title": "Sin Filtro — Material Nuevo",
+      "artist": "Sin Filtro",
+      "venue": "Teatro Colsubsidio",
+      "city": "Bogotá",
+      "starts_at": "2026-08-08T19:30:00+00:00",
+      "weekday": "sábado",
+      "capacity": 800,
+      "tickets_sold": 623,
+      "expected_attendance": 500,
+      "p10": 481,
+      "p90": 519,
+      "staff_puerta": 7,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 623,
+          "expected": 487.3
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0041",
+      "title": "Trasnoche Cali — residencia sábado",
+      "artist": "Trasnoche Cali",
+      "venue": "Sala Beethoven",
+      "city": "Cali",
+      "starts_at": "2026-08-08T20:30:00+00:00",
+      "weekday": "sábado",
+      "capacity": 150,
+      "tickets_sold": 94,
+      "expected_attendance": 85,
+      "p10": 62,
+      "p90": 94,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 22,
+          "expected": 16.3
+        },
+        "General": {
+          "sold": 58,
+          "expected": 49.6
+        },
+        "VIP": {
+          "sold": 8,
+          "expected": 7.8
+        },
+        "Preferencial": {
+          "sold": 6,
+          "expected": 5.9
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0015",
+      "title": "Micrófono Suelto — residencia martes",
+      "artist": "Micrófono Suelto",
+      "venue": "Ace of Clubs",
+      "city": "Bogotá",
+      "starts_at": "2026-08-11T20:00:00+00:00",
+      "weekday": "martes",
+      "capacity": 250,
+      "tickets_sold": 115,
+      "expected_attendance": 58,
+      "p10": 35,
+      "p90": 81,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "VIP": {
+          "sold": 16,
+          "expected": 7.4
+        },
+        "Cortesía": {
+          "sold": 46,
+          "expected": 18.2
+        },
+        "General": {
+          "sold": 37,
+          "expected": 19.7
+        },
+        "Preferencial": {
+          "sold": 16,
+          "expected": 7.7
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0033",
+      "title": "La Bodega Improvisa — residencia miércoles",
+      "artist": "La Bodega Improvisa",
+      "venue": "La Bodega del Chiste",
+      "city": "Bogotá",
+      "starts_at": "2026-08-12T20:30:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 180,
+      "tickets_sold": 88,
+      "expected_attendance": 76,
+      "p10": 53,
+      "p90": 88,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 17,
+          "expected": 9.6
+        },
+        "General": {
+          "sold": 51,
+          "expected": 43.5
+        },
+        "Preferencial": {
+          "sold": 12,
+          "expected": 10.7
+        },
+        "VIP": {
+          "sold": 8,
+          "expected": 6.9
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0024",
+      "title": "Doble Sentido — residencia jueves",
+      "artist": "Doble Sentido",
+      "venue": "La Pascasia",
+      "city": "Medellín",
+      "starts_at": "2026-08-13T20:30:00+00:00",
+      "weekday": "jueves",
+      "capacity": 150,
+      "tickets_sold": 80,
+      "expected_attendance": 70,
+      "p10": 47,
+      "p90": 80,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 18,
+          "expected": 10.9
+        },
+        "General": {
+          "sold": 43,
+          "expected": 36.8
+        },
+        "Preferencial": {
+          "sold": 11,
+          "expected": 9.5
+        },
+        "VIP": {
+          "sold": 8,
+          "expected": 7.6
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0007",
+      "title": "Mala Hora — residencia viernes",
+      "artist": "Mala Hora",
+      "venue": "Casa E",
+      "city": "Bogotá",
+      "starts_at": "2026-08-14T20:30:00+00:00",
+      "weekday": "viernes",
+      "capacity": 120,
+      "tickets_sold": 78,
+      "expected_attendance": 58,
+      "p10": 35,
+      "p90": 78,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 78,
+          "expected": 52.7
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0042",
+      "title": "Trasnoche Cali — residencia sábado",
+      "artist": "Trasnoche Cali",
+      "venue": "Sala Beethoven",
+      "city": "Cali",
+      "starts_at": "2026-08-15T20:00:00+00:00",
+      "weekday": "sábado",
+      "capacity": 150,
+      "tickets_sold": 71,
+      "expected_attendance": 62,
+      "p10": 39,
+      "p90": 71,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 30,
+          "expected": 25.3
+        },
+        "VIP": {
+          "sold": 12,
+          "expected": 9.9
+        },
+        "Preferencial": {
+          "sold": 10,
+          "expected": 9.8
+        },
+        "Cortesía": {
+          "sold": 19,
+          "expected": 11.5
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0016",
+      "title": "Micrófono Suelto — residencia martes",
+      "artist": "Micrófono Suelto",
+      "venue": "Ace of Clubs",
+      "city": "Bogotá",
+      "starts_at": "2026-08-18T20:00:00+00:00",
+      "weekday": "martes",
+      "capacity": 220,
+      "tickets_sold": 88,
+      "expected_attendance": 43,
+      "p10": 20,
+      "p90": 67,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 27,
+          "expected": 11.1
+        },
+        "Cortesía": {
+          "sold": 49,
+          "expected": 20.7
+        },
+        "Preferencial": {
+          "sold": 10,
+          "expected": 5.6
+        },
+        "VIP": {
+          "sold": 2,
+          "expected": 0.7
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0048",
+      "title": "Cuento Corto — Show de Temporada",
+      "artist": "Cuento Corto",
+      "venue": "Teatro Metropolitano",
+      "city": "Medellín",
+      "starts_at": "2026-08-19T19:00:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 450,
+      "tickets_sold": 210,
+      "expected_attendance": 145,
+      "p10": 138,
+      "p90": 153,
+      "staff_puerta": 2,
+      "is_residency": false,
+      "kind": "fecha_suelta",
+      "type_breakdown": {
+        "General": {
+          "sold": 90,
+          "expected": 63.2
+        },
+        "VIP": {
+          "sold": 21,
+          "expected": 18.0
+        },
+        "Cortesía": {
+          "sold": 59,
+          "expected": 31.6
+        },
+        "Preferencial": {
+          "sold": 40,
+          "expected": 32.7
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0062",
+      "title": "Los del Fondo — Función Única",
+      "artist": "Los del Fondo",
+      "venue": "Teatro Jorge Isaacs",
+      "city": "Cali",
+      "starts_at": "2026-08-19T19:30:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 600,
+      "tickets_sold": 286,
+      "expected_attendance": 81,
+      "p10": 62,
+      "p90": 100,
+      "staff_puerta": 2,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 286,
+          "expected": 68.1
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0034",
+      "title": "La Bodega Improvisa — residencia miércoles",
+      "artist": "La Bodega Improvisa",
+      "venue": "La Bodega del Chiste",
+      "city": "Bogotá",
+      "starts_at": "2026-08-19T20:00:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 120,
+      "tickets_sold": 61,
+      "expected_attendance": 54,
+      "p10": 31,
+      "p90": 61,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Preferencial": {
+          "sold": 9,
+          "expected": 8.2
+        },
+        "General": {
+          "sold": 29,
+          "expected": 24.4
+        },
+        "Cortesía": {
+          "sold": 20,
+          "expected": 13.2
+        },
+        "VIP": {
+          "sold": 3,
+          "expected": 2.9
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0050",
+      "title": "Sin Filtro — Especial de Improvisación",
+      "artist": "Sin Filtro",
+      "venue": "La Bodega del Chiste",
+      "city": "Bogotá",
+      "starts_at": "2026-08-20T19:30:00+00:00",
+      "weekday": "jueves",
+      "capacity": 800,
+      "tickets_sold": 424,
+      "expected_attendance": 394,
+      "p10": 375,
+      "p90": 413,
+      "staff_puerta": 5,
+      "is_residency": false,
+      "kind": "artista_con_julio",
+      "type_breakdown": {
+        "General": {
+          "sold": 266,
+          "expected": 244.0
+        },
+        "VIP": {
+          "sold": 78,
+          "expected": 66.0
+        },
+        "Preferencial": {
+          "sold": 72,
+          "expected": 64.8
+        },
+        "Cortesía": {
+          "sold": 8,
+          "expected": 6.3
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0025",
+      "title": "Doble Sentido — residencia jueves",
+      "artist": "Doble Sentido",
+      "venue": "La Pascasia",
+      "city": "Medellín",
+      "starts_at": "2026-08-20T20:00:00+00:00",
+      "weekday": "jueves",
+      "capacity": 220,
+      "tickets_sold": 98,
+      "expected_attendance": 85,
+      "p10": 62,
+      "p90": 98,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 60,
+          "expected": 45.2
+        },
+        "VIP": {
+          "sold": 19,
+          "expected": 17.2
+        },
+        "Preferencial": {
+          "sold": 12,
+          "expected": 11.3
+        },
+        "Cortesía": {
+          "sold": 7,
+          "expected": 6.3
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0008",
+      "title": "Mala Hora — residencia viernes",
+      "artist": "Mala Hora",
+      "venue": "Casa E",
+      "city": "Bogotá",
+      "starts_at": "2026-08-21T20:00:00+00:00",
+      "weekday": "viernes",
+      "capacity": 120,
+      "tickets_sold": 58,
+      "expected_attendance": 56,
+      "p10": 32,
+      "p90": 58,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 51,
+          "expected": 44.9
+        },
+        "Cortesía": {
+          "sold": 4,
+          "expected": 3.0
+        },
+        "Preferencial": {
+          "sold": 2,
+          "expected": 1.5
+        },
+        "VIP": {
+          "sold": 1,
+          "expected": 1.0
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0046",
+      "title": "Tres Sillas — Función Única",
+      "artist": "Tres Sillas",
+      "venue": "Ace of Clubs",
+      "city": "Bogotá",
+      "starts_at": "2026-08-22T19:30:00+00:00",
+      "weekday": "sábado",
+      "capacity": 1200,
+      "tickets_sold": 427,
+      "expected_attendance": 290,
+      "p10": 279,
+      "p90": 301,
+      "staff_puerta": 4,
+      "is_residency": false,
+      "kind": "fecha_suelta",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 133,
+          "expected": 72.1
+        },
+        "General": {
+          "sold": 188,
+          "expected": 136.2
+        },
+        "Preferencial": {
+          "sold": 58,
+          "expected": 45.2
+        },
+        "VIP": {
+          "sold": 48,
+          "expected": 36.6
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0043",
+      "title": "Trasnoche Cali — residencia sábado",
+      "artist": "Trasnoche Cali",
+      "venue": "Sala Beethoven",
+      "city": "Cali",
+      "starts_at": "2026-08-22T20:00:00+00:00",
+      "weekday": "sábado",
+      "capacity": 150,
+      "tickets_sold": 65,
+      "expected_attendance": 49,
+      "p10": 26,
+      "p90": 65,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 65,
+          "expected": 44.1
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0017",
+      "title": "Micrófono Suelto — residencia martes",
+      "artist": "Micrófono Suelto",
+      "venue": "Ace of Clubs",
+      "city": "Bogotá",
+      "starts_at": "2026-08-25T20:30:00+00:00",
+      "weekday": "martes",
+      "capacity": 120,
+      "tickets_sold": 48,
+      "expected_attendance": 26,
+      "p10": 3,
+      "p90": 48,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "General": {
+          "sold": 23,
+          "expected": 11.9
+        },
+        "Cortesía": {
+          "sold": 15,
+          "expected": 3.7
+        },
+        "Preferencial": {
+          "sold": 10,
+          "expected": 5.4
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0054",
+      "title": "Cuento Corto — Comedia sin Red",
+      "artist": "Cuento Corto",
+      "venue": "Teatro Colsubsidio",
+      "city": "Bogotá",
+      "starts_at": "2026-08-26T19:30:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 800,
+      "tickets_sold": 273,
+      "expected_attendance": 163,
+      "p10": 153,
+      "p90": 172,
+      "staff_puerta": 3,
+      "is_residency": false,
+      "kind": "fecha_suelta",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 273,
+          "expected": 162.6
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0035",
+      "title": "La Bodega Improvisa — residencia miércoles",
+      "artist": "La Bodega Improvisa",
+      "venue": "La Bodega del Chiste",
+      "city": "Bogotá",
+      "starts_at": "2026-08-26T20:30:00+00:00",
+      "weekday": "miércoles",
+      "capacity": 180,
+      "tickets_sold": 67,
+      "expected_attendance": 55,
+      "p10": 32,
+      "p90": 67,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 16,
+          "expected": 10.3
+        },
+        "General": {
+          "sold": 37,
+          "expected": 27.3
+        },
+        "VIP": {
+          "sold": 9,
+          "expected": 8.2
+        },
+        "Preferencial": {
+          "sold": 5,
+          "expected": 4.0
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0026",
+      "title": "Doble Sentido — residencia jueves",
+      "artist": "Doble Sentido",
+      "venue": "La Pascasia",
+      "city": "Medellín",
+      "starts_at": "2026-08-27T20:30:00+00:00",
+      "weekday": "jueves",
+      "capacity": 220,
+      "tickets_sold": 63,
+      "expected_attendance": 54,
+      "p10": 31,
+      "p90": 63,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Cortesía": {
+          "sold": 9,
+          "expected": 6.2
+        },
+        "General": {
+          "sold": 37,
+          "expected": 29.9
+        },
+        "Preferencial": {
+          "sold": 8,
+          "expected": 5.9
+        },
+        "VIP": {
+          "sold": 9,
+          "expected": 6.5
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0009",
+      "title": "Mala Hora — residencia viernes",
+      "artist": "Mala Hora",
+      "venue": "Casa E",
+      "city": "Bogotá",
+      "starts_at": "2026-08-28T20:30:00+00:00",
+      "weekday": "viernes",
+      "capacity": 120,
+      "tickets_sold": 37,
+      "expected_attendance": 36,
+      "p10": 12,
+      "p90": 37,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "VIP": {
+          "sold": 7,
+          "expected": 6.8
+        },
+        "General": {
+          "sold": 16,
+          "expected": 12.4
+        },
+        "Preferencial": {
+          "sold": 11,
+          "expected": 8.9
+        },
+        "Cortesía": {
+          "sold": 3,
+          "expected": 2.3
+        }
+      }
+    },
+    {
+      "event_id": "ft_evt_0044",
+      "title": "Trasnoche Cali — residencia sábado",
+      "artist": "Trasnoche Cali",
+      "venue": "Sala Beethoven",
+      "city": "Cali",
+      "starts_at": "2026-08-29T20:00:00+00:00",
+      "weekday": "sábado",
+      "capacity": 220,
+      "tickets_sold": 56,
+      "expected_attendance": 52,
+      "p10": 29,
+      "p90": 56,
+      "staff_puerta": 2,
+      "is_residency": true,
+      "kind": "residencia_fuerte",
+      "type_breakdown": {
+        "Preferencial": {
+          "sold": 13,
+          "expected": 10.9
+        },
+        "VIP": {
+          "sold": 11,
+          "expected": 10.5
+        },
+        "General": {
+          "sold": 23,
+          "expected": 18.9
+        },
+        "Cortesía": {
+          "sold": 9,
+          "expected": 6.3
+        }
+      }
+    }
+  ],
+  "global_by_type": {
+    "General": {
+      "sold": 1799,
+      "expected": 1437.9
+    },
+    "Preferencial": {
+      "sold": 532,
+      "expected": 439.3
+    },
+    "VIP": {
+      "sold": 419,
+      "expected": 345.0
+    },
+    "Cortesía": {
+      "sold": 2459,
+      "expected": 1493.4
+    }
   },
-  {
-    "event_id": "ft_evt_0058",
-    "title": "Roast de Medianoche — Comedia sin Red",
-    "artist": "Roast de Medianoche",
-    "venue": "Teatro Colsubsidio",
-    "city": "Bogotá",
-    "starts_at": "2026-08-04T19:30:00+00:00",
-    "weekday": "martes",
-    "capacity": 250,
-    "tickets_sold": 232,
-    "expected_attendance": 179,
-    "p10": 160,
-    "p90": 198,
-    "staff_puerta": 3,
-    "is_residency": false
+  "match_stats": {
+    "total_sales": 6383,
+    "matched": 4039,
+    "unmatched": 2344,
+    "by_confidence": {
+      "1.00": 3571,
+      "0.95": 346,
+      "0.80": 107,
+      "0.85": 15
+    }
   },
-  {
-    "event_id": "ft_evt_0014",
-    "title": "Micrófono Suelto — residencia martes",
-    "artist": "Micrófono Suelto",
-    "venue": "Ace of Clubs",
-    "city": "Bogotá",
-    "starts_at": "2026-08-04T20:00:00+00:00",
-    "weekday": "martes",
-    "capacity": 220,
-    "tickets_sold": 120,
-    "expected_attendance": 61,
-    "p10": 38,
-    "p90": 84,
-    "staff_puerta": 2,
-    "is_residency": true
+  "backtest": {
+    "n_events": 32,
+    "coverage_p10_p90": 87.5,
+    "mape": 11.6,
+    "bias_mean": 0.1
   },
-  {
-    "event_id": "ft_evt_0032",
-    "title": "La Bodega Improvisa — residencia miércoles",
-    "artist": "La Bodega Improvisa",
-    "venue": "La Bodega del Chiste",
-    "city": "Bogotá",
-    "starts_at": "2026-08-05T20:00:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 250,
-    "tickets_sold": 201,
-    "expected_attendance": 158,
-    "p10": 135,
-    "p90": 181,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0023",
-    "title": "Doble Sentido — residencia jueves",
-    "artist": "Doble Sentido",
-    "venue": "La Pascasia",
-    "city": "Medellín",
-    "starts_at": "2026-08-06T20:30:00+00:00",
-    "weekday": "jueves",
-    "capacity": 250,
-    "tickets_sold": 192,
-    "expected_attendance": 163,
-    "p10": 140,
-    "p90": 186,
-    "staff_puerta": 3,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0056",
-    "title": "Sin Filtro — Especial de Improvisación",
-    "artist": "Sin Filtro",
-    "venue": "Teatro Metropolitano",
-    "city": "Medellín",
-    "starts_at": "2026-08-06T20:30:00+00:00",
-    "weekday": "jueves",
-    "capacity": 450,
-    "tickets_sold": 378,
-    "expected_attendance": 352,
-    "p10": 333,
-    "p90": 371,
-    "staff_puerta": 5,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0006",
-    "title": "Mala Hora — residencia viernes",
-    "artist": "Mala Hora",
-    "venue": "Casa E",
-    "city": "Bogotá",
-    "starts_at": "2026-08-07T20:30:00+00:00",
-    "weekday": "viernes",
-    "capacity": 180,
-    "tickets_sold": 122,
-    "expected_attendance": 89,
-    "p10": 65,
-    "p90": 112,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0052",
-    "title": "Segunda Función — Especial de Improvisación",
-    "artist": "Segunda Función",
-    "venue": "Teatro Santiago Londoño",
-    "city": "Pereira",
-    "starts_at": "2026-08-07T20:30:00+00:00",
-    "weekday": "viernes",
-    "capacity": 800,
-    "tickets_sold": 436,
-    "expected_attendance": 310,
-    "p10": 291,
-    "p90": 329,
-    "staff_puerta": 4,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0060",
-    "title": "Sin Filtro — Material Nuevo",
-    "artist": "Sin Filtro",
-    "venue": "Teatro Colsubsidio",
-    "city": "Bogotá",
-    "starts_at": "2026-08-08T19:30:00+00:00",
-    "weekday": "sábado",
-    "capacity": 800,
-    "tickets_sold": 623,
-    "expected_attendance": 500,
-    "p10": 481,
-    "p90": 519,
-    "staff_puerta": 7,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0041",
-    "title": "Trasnoche Cali — residencia sábado",
-    "artist": "Trasnoche Cali",
-    "venue": "Sala Beethoven",
-    "city": "Cali",
-    "starts_at": "2026-08-08T20:30:00+00:00",
-    "weekday": "sábado",
-    "capacity": 150,
-    "tickets_sold": 94,
-    "expected_attendance": 85,
-    "p10": 62,
-    "p90": 94,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0015",
-    "title": "Micrófono Suelto — residencia martes",
-    "artist": "Micrófono Suelto",
-    "venue": "Ace of Clubs",
-    "city": "Bogotá",
-    "starts_at": "2026-08-11T20:00:00+00:00",
-    "weekday": "martes",
-    "capacity": 250,
-    "tickets_sold": 115,
-    "expected_attendance": 58,
-    "p10": 35,
-    "p90": 81,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0033",
-    "title": "La Bodega Improvisa — residencia miércoles",
-    "artist": "La Bodega Improvisa",
-    "venue": "La Bodega del Chiste",
-    "city": "Bogotá",
-    "starts_at": "2026-08-12T20:30:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 180,
-    "tickets_sold": 88,
-    "expected_attendance": 76,
-    "p10": 53,
-    "p90": 88,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0024",
-    "title": "Doble Sentido — residencia jueves",
-    "artist": "Doble Sentido",
-    "venue": "La Pascasia",
-    "city": "Medellín",
-    "starts_at": "2026-08-13T20:30:00+00:00",
-    "weekday": "jueves",
-    "capacity": 150,
-    "tickets_sold": 80,
-    "expected_attendance": 70,
-    "p10": 47,
-    "p90": 80,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0007",
-    "title": "Mala Hora — residencia viernes",
-    "artist": "Mala Hora",
-    "venue": "Casa E",
-    "city": "Bogotá",
-    "starts_at": "2026-08-14T20:30:00+00:00",
-    "weekday": "viernes",
-    "capacity": 120,
-    "tickets_sold": 78,
-    "expected_attendance": 58,
-    "p10": 35,
-    "p90": 78,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0042",
-    "title": "Trasnoche Cali — residencia sábado",
-    "artist": "Trasnoche Cali",
-    "venue": "Sala Beethoven",
-    "city": "Cali",
-    "starts_at": "2026-08-15T20:00:00+00:00",
-    "weekday": "sábado",
-    "capacity": 150,
-    "tickets_sold": 71,
-    "expected_attendance": 62,
-    "p10": 39,
-    "p90": 71,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0016",
-    "title": "Micrófono Suelto — residencia martes",
-    "artist": "Micrófono Suelto",
-    "venue": "Ace of Clubs",
-    "city": "Bogotá",
-    "starts_at": "2026-08-18T20:00:00+00:00",
-    "weekday": "martes",
-    "capacity": 220,
-    "tickets_sold": 88,
-    "expected_attendance": 43,
-    "p10": 20,
-    "p90": 67,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0048",
-    "title": "Cuento Corto — Show de Temporada",
-    "artist": "Cuento Corto",
-    "venue": "Teatro Metropolitano",
-    "city": "Medellín",
-    "starts_at": "2026-08-19T19:00:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 450,
-    "tickets_sold": 210,
-    "expected_attendance": 145,
-    "p10": 138,
-    "p90": 153,
-    "staff_puerta": 2,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0062",
-    "title": "Los del Fondo — Función Única",
-    "artist": "Los del Fondo",
-    "venue": "Teatro Jorge Isaacs",
-    "city": "Cali",
-    "starts_at": "2026-08-19T19:30:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 600,
-    "tickets_sold": 286,
-    "expected_attendance": 81,
-    "p10": 62,
-    "p90": 100,
-    "staff_puerta": 2,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0034",
-    "title": "La Bodega Improvisa — residencia miércoles",
-    "artist": "La Bodega Improvisa",
-    "venue": "La Bodega del Chiste",
-    "city": "Bogotá",
-    "starts_at": "2026-08-19T20:00:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 120,
-    "tickets_sold": 61,
-    "expected_attendance": 54,
-    "p10": 31,
-    "p90": 61,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0050",
-    "title": "Sin Filtro — Especial de Improvisación",
-    "artist": "Sin Filtro",
-    "venue": "La Bodega del Chiste",
-    "city": "Bogotá",
-    "starts_at": "2026-08-20T19:30:00+00:00",
-    "weekday": "jueves",
-    "capacity": 800,
-    "tickets_sold": 424,
-    "expected_attendance": 394,
-    "p10": 375,
-    "p90": 413,
-    "staff_puerta": 5,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0025",
-    "title": "Doble Sentido — residencia jueves",
-    "artist": "Doble Sentido",
-    "venue": "La Pascasia",
-    "city": "Medellín",
-    "starts_at": "2026-08-20T20:00:00+00:00",
-    "weekday": "jueves",
-    "capacity": 220,
-    "tickets_sold": 98,
-    "expected_attendance": 85,
-    "p10": 62,
-    "p90": 98,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0008",
-    "title": "Mala Hora — residencia viernes",
-    "artist": "Mala Hora",
-    "venue": "Casa E",
-    "city": "Bogotá",
-    "starts_at": "2026-08-21T20:00:00+00:00",
-    "weekday": "viernes",
-    "capacity": 120,
-    "tickets_sold": 58,
-    "expected_attendance": 56,
-    "p10": 32,
-    "p90": 58,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0046",
-    "title": "Tres Sillas — Función Única",
-    "artist": "Tres Sillas",
-    "venue": "Ace of Clubs",
-    "city": "Bogotá",
-    "starts_at": "2026-08-22T19:30:00+00:00",
-    "weekday": "sábado",
-    "capacity": 1200,
-    "tickets_sold": 427,
-    "expected_attendance": 290,
-    "p10": 279,
-    "p90": 301,
-    "staff_puerta": 4,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0043",
-    "title": "Trasnoche Cali — residencia sábado",
-    "artist": "Trasnoche Cali",
-    "venue": "Sala Beethoven",
-    "city": "Cali",
-    "starts_at": "2026-08-22T20:00:00+00:00",
-    "weekday": "sábado",
-    "capacity": 150,
-    "tickets_sold": 65,
-    "expected_attendance": 49,
-    "p10": 26,
-    "p90": 65,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0017",
-    "title": "Micrófono Suelto — residencia martes",
-    "artist": "Micrófono Suelto",
-    "venue": "Ace of Clubs",
-    "city": "Bogotá",
-    "starts_at": "2026-08-25T20:30:00+00:00",
-    "weekday": "martes",
-    "capacity": 120,
-    "tickets_sold": 48,
-    "expected_attendance": 26,
-    "p10": 3,
-    "p90": 48,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0054",
-    "title": "Cuento Corto — Comedia sin Red",
-    "artist": "Cuento Corto",
-    "venue": "Teatro Colsubsidio",
-    "city": "Bogotá",
-    "starts_at": "2026-08-26T19:30:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 800,
-    "tickets_sold": 273,
-    "expected_attendance": 163,
-    "p10": 153,
-    "p90": 172,
-    "staff_puerta": 3,
-    "is_residency": false
-  },
-  {
-    "event_id": "ft_evt_0035",
-    "title": "La Bodega Improvisa — residencia miércoles",
-    "artist": "La Bodega Improvisa",
-    "venue": "La Bodega del Chiste",
-    "city": "Bogotá",
-    "starts_at": "2026-08-26T20:30:00+00:00",
-    "weekday": "miércoles",
-    "capacity": 180,
-    "tickets_sold": 67,
-    "expected_attendance": 55,
-    "p10": 32,
-    "p90": 67,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0026",
-    "title": "Doble Sentido — residencia jueves",
-    "artist": "Doble Sentido",
-    "venue": "La Pascasia",
-    "city": "Medellín",
-    "starts_at": "2026-08-27T20:30:00+00:00",
-    "weekday": "jueves",
-    "capacity": 220,
-    "tickets_sold": 63,
-    "expected_attendance": 54,
-    "p10": 31,
-    "p90": 63,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0009",
-    "title": "Mala Hora — residencia viernes",
-    "artist": "Mala Hora",
-    "venue": "Casa E",
-    "city": "Bogotá",
-    "starts_at": "2026-08-28T20:30:00+00:00",
-    "weekday": "viernes",
-    "capacity": 120,
-    "tickets_sold": 37,
-    "expected_attendance": 36,
-    "p10": 12,
-    "p90": 37,
-    "staff_puerta": 2,
-    "is_residency": true
-  },
-  {
-    "event_id": "ft_evt_0044",
-    "title": "Trasnoche Cali — residencia sábado",
-    "artist": "Trasnoche Cali",
-    "venue": "Sala Beethoven",
-    "city": "Cali",
-    "starts_at": "2026-08-29T20:00:00+00:00",
-    "weekday": "sábado",
-    "capacity": 220,
-    "tickets_sold": 56,
-    "expected_attendance": 52,
-    "p10": 29,
-    "p90": 56,
-    "staff_puerta": 2,
-    "is_residency": true
+  "meta": {
+    "generated_at": "2026-08-01T19:53:11+00:00",
+    "n_events": 30,
+    "total_expected": 3903,
+    "total_sold": 5209
   }
-]
+}

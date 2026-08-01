@@ -47,6 +47,52 @@
   .kpi .n { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
   .kpi .lbl { color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
 
+  .insight-hero {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 0;
+    background: linear-gradient(135deg, rgba(255,123,114,0.08), rgba(242,204,96,0.06));
+    border: 1px solid rgba(255,123,114,0.3);
+    border-radius: 12px; overflow: hidden; margin: 8px 0 20px;
+  }
+  .insight-hero .lead {
+    padding: 24px 28px; display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid rgba(255,123,114,0.2);
+  }
+  .insight-hero .tag {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--danger); font-weight: 600;
+  }
+  .insight-hero .big {
+    font-size: 44px; font-weight: 700; letter-spacing: -1.5px; line-height: 1;
+    color: var(--warn);
+  }
+  .insight-hero .big small { font-size: 20px; font-weight: 500; color: var(--dim); margin-left: 4px; }
+  .insight-hero .desc {
+    color: var(--text); font-size: 14px; line-height: 1.55; margin-top: 4px;
+  }
+  .insight-hero .desc b { color: var(--warn); font-weight: 600; }
+  .insight-hero .actions {
+    padding: 24px 28px; display: flex; flex-direction: column; gap: 16px;
+    background: rgba(0,0,0,0.15);
+  }
+  .insight-hero .actions h4 {
+    margin: 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dim); font-weight: 600;
+  }
+  .insight-hero .action-item {
+    display: flex; gap: 12px; align-items: baseline;
+  }
+  .insight-hero .action-item .num {
+    font-size: 22px; font-weight: 700; color: var(--accent); min-width: 100px;
+  }
+  .insight-hero .action-item .txt {
+    font-size: 13px; color: var(--text);
+  }
+  @media (max-width: 900px) {
+    .insight-hero { grid-template-columns: 1fr; }
+    .insight-hero .lead { border-right: none; border-bottom: 1px solid rgba(255,123,114,0.2); }
+    .insight-hero .big { font-size: 36px; }
+  }
+
   .dashboard {
     display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin: 8px 0 24px;
   }
@@ -129,6 +175,8 @@
 
 <div class="wrap">
   <div class="kpis" id="kpis"></div>
+
+  <section class="insight-hero" id="insightHero"></section>
 
   <section class="dashboard">
     <div class="panel">
@@ -377,6 +425,36 @@ fetch('./data.json')
       const o = document.createElement('option');
       o.value = c; o.textContent = c; sel.appendChild(o);
     });
+
+    // insight hero: costo real de las cortesías
+    const ci = payload.courtesy_insight;
+    if (ci) {
+      const fmtCOP = n => '$' + Math.round(n/1_000_000) + 'M';
+      const pct = ci.courtesy_sold > 0 ? (ci.courtesy_noshow/ci.courtesy_sold*100).toFixed(0) : 0;
+      document.getElementById('insightHero').innerHTML = `
+        <div class="lead">
+          <div class="tag">Insight — el costo real de las cortesías</div>
+          <div class="big">${fmtCOP(ci.lost_revenue_cop)}<small> COP en asientos vacíos</small></div>
+          <div class="desc">
+            De las <b>${ci.courtesy_sold.toLocaleString()} cortesías</b> repartidas en agosto,
+            proyectamos que <b>${ci.courtesy_noshow.toLocaleString()} no van a usarse</b> (${pct}%).
+            Si esos mismos asientos se hubieran vendido como tickets pagados
+            (a ~$${ci.avg_paid_price_cop.toLocaleString()} COP promedio), habría entrado gente en su lugar.
+          </div>
+        </div>
+        <div class="actions">
+          <h4>Palancas accionables</h4>
+          <div class="action-item">
+            <div class="num">${fmtCOP(ci.recover_if_convert_30pct_cop)}</div>
+            <div class="txt">recuperados si se convierte el <b>30% de las cortesías más ineficientes</b> en tickets pagados con descuento.</div>
+          </div>
+          <div class="action-item">
+            <div class="num">~290</div>
+            <div class="txt">asientos rescatables por show si se aplica la lista de <b>compradores con historial de no-show</b> (Boom use_rate < 0.2).</div>
+          </div>
+        </div>
+      `;
+    }
 
     // charts
     drawTimeline(ALL);

@@ -322,11 +322,36 @@ def backtest_summary():
         "bias_mean": round(sum(x["err"] for x in per)/n, 1),
     }
 
+# ------------------------------------------------------------------ INSIGHT: costo real de las cortesías
+# Precio promedio pagado en agosto (no cortesía)
+agosto_ids = {eid for eid, e in events.items() if e["month"] == "agosto"}
+_paid_prices = []
+with (RAW / "ft_tickets.csv").open() as f:
+    for r in csv.DictReader(f):
+        if r["event_id"] in agosto_ids and r["ticket_type"] != "Cortesía":
+            _paid_prices.append(int(r["price"] or 0))
+avg_paid_price = sum(_paid_prices) / len(_paid_prices) if _paid_prices else 0
+
+cort = global_by_type.get("Cortesía", {"sold": 0, "expected": 0.0})
+courtesy_noshow = max(0, cort["sold"] - cort["expected"])
+lost_revenue = round(courtesy_noshow * avg_paid_price)
+recover_30 = round(courtesy_noshow * 0.30 * avg_paid_price)
+
+courtesy_insight = {
+    "courtesy_sold": cort["sold"],
+    "courtesy_expected": round(cort["expected"]),
+    "courtesy_noshow": round(courtesy_noshow),
+    "avg_paid_price_cop": round(avg_paid_price),
+    "lost_revenue_cop": lost_revenue,
+    "recover_if_convert_30pct_cop": recover_30,
+}
+
 payload = {
     "events": web_rows,
     "global_by_type": global_by_type,
     "match_stats": match_stats,
     "backtest": backtest_summary(),
+    "courtesy_insight": courtesy_insight,
     "meta": {
         "generated_at": None,
         "n_events": len(web_rows),

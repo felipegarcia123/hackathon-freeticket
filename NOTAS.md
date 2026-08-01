@@ -99,10 +99,27 @@ Bias +0.0 = modelo calibrado. El rango `[0, tickets_sold]` no aparece.
 ## Qué señal pesó más
 
 **El tipo de ticket.** La diferencia 94% pagado vs 42% cortesía explica más
-varianza en la asistencia que cualquier otra señal individual — y 41% de
+varianza en la asistencia que cualquier otra señal individual — y 47% de
 los tickets de agosto son Cortesía. Sin ese quiebre, la proyección se
 desvía por 20+ puntos porcentuales fácil. Boom afina el pronóstico
 individual pero no cambia el orden de magnitud.
+
+## El insight que nadie pidió: cortesías = plata dejada en la mesa
+
+Combinando los dos entregables (matching → tipo → precio):
+
+- **2.459 cortesías repartidas en agosto**, de las cuales solo **1.493
+  van a usarse** (61%). El resto — **966 asientos** — van a estar vacíos.
+- Precio promedio pagado de un ticket agosto = **$73.452 COP**.
+- Costo de oportunidad = **~$71 millones COP en asientos-cortesía vacíos**.
+  Ese es el precio real de la política actual de repartir cortesías.
+- **Convertir el 30% de las cortesías más ineficientes** (las de canales
+  ADMIN/RRPP en julio, que consistentemente entran menos) en tickets
+  pagados con descuento del 30% recuperaría ~$21M COP.
+
+El dashboard lo pone en el hero superior, con las palancas accionables al
+lado. No es un nice-to-have: cambia cómo debería pensarse la política de
+cortesías el lunes.
 
 ## Qué haría con 4 horas más
 

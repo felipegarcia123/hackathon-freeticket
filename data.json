@@ -998,8 +998,16 @@
     "mape": 11.6,
     "bias_mean": 0.1
   },
+  "courtesy_insight": {
+    "courtesy_sold": 2459,
+    "courtesy_expected": 1493,
+    "courtesy_noshow": 966,
+    "avg_paid_price_cop": 73452,
+    "lost_revenue_cop": 70925602,
+    "recover_if_convert_30pct_cop": 21277681
+  },
   "meta": {
-    "generated_at": "2026-08-01T19:53:11+00:00",
+    "generated_at": "2026-08-01T20:09:03+00:00",
     "n_events": 30,
     "total_expected": 3903,
     "total_sold": 5209

@@ -57,24 +57,32 @@ probabilidad p_i, con la señal más específica disponible:
      bounded a [0.85, 1.15] hacia esa tasa.
    - **Nada**: sin factor.
 
-## p10 / p90 honestos
+## p10 / p90 honestos: σ empírico, no a ojo
 
-Asistencia = Σ Bernoulli(p_i). Aproximación normal:
-- `mean = Σ p_i`
-- `var  = Σ p_i(1-p_i)`
-- `σ_modelo = k · sqrt(var)` — `k` refleja incertidumbre del modelo,
-  no solo del sampling:
-  - k=1.0 residencia con hermanos fuertes (mejor señal disponible)
-  - k=1.3 residencia débil
-  - k=1.5 fecha suelta con julio del artista
-  - k=1.8 fecha suelta sin nada
-- `p10 = max(0, mean - 1.2816 · σ)`
-- `p90 = min(tickets_sold, mean + 1.2816 · σ)`
+Asistencia = Σ Bernoulli(p_i). En vez de asumir un `k` a ojo:
 
-Rango que va de 0 a `tickets_sold` no aparece — sería trampa; se penaliza,
-no se premia.
+1. **Backtest LOO sobre julio** (`scripts/backtest_julio.py`) — para cada
+   evento julio, calibro `bias_type` y `σ_type` con los otros 31, luego
+   predigo y comparo vs `checked_in_count` real.
+2. En el forecast final aplico:
+   - `mean_adj = Σ p_i + bias_type` (corrige sesgo residual del modelo)
+   - `σ_use = max(σ_bernoulli, σ_type_residual)` (no subestimo la
+     incertidumbre real observada)
+   - `p10 = max(0, round(mean_adj - 1.2816 · σ_use))`
+   - `p90 = min(tickets_sold, round(mean_adj + 1.2816 · σ_use))`
 
-## Números observados (baseline actual)
+**Resultado del backtest LOO (32 eventos julio):**
+
+| Tipo de evento       | n  | MAPE  | Cobertura p10-p90 | Bias medio |
+|----------------------|----|-------|-------------------|------------|
+| residencia_fuerte    | 23 | 15.3% | 78.3%             | +0.1       |
+| artista_con_julio    | 9  |  2.4% | 88.9%             | -0.2       |
+| **GLOBAL**           | 32 | **11.6%** | **81.2%**    | +0.0       |
+
+Cobertura ~80% = rango honesto (por definición de intervalo del 80%).
+Bias +0.0 = modelo calibrado. El rango `[0, tickets_sold]` no aparece.
+
+## Números observados (versión final)
 
 - Sales totales: 6.383 · matches ≥ 0.80: **4.039 (63%)** · ambigüedades
   descartadas: 31.
@@ -84,6 +92,9 @@ no se premia.
   cruzados con el user Boom correcto.
 - Eventos agosto: 30. Mix: **21 residencias fuertes**, 6 artistas con julio,
   3 fechas sueltas.
+- Forecast: **3.903 asistentes esperados** en agosto sobre los 5.209
+  tickets ya vendidos → 74.9% asistencia agregada. Rangos p10-p90 con
+  ancho promedio 36 tickets (calibrado por σ empírico del backtest).
 
 ## Qué señal pesó más
 
@@ -95,15 +106,17 @@ individual pero no cambia el orden de magnitud.
 
 ## Qué haría con 4 horas más
 
-1. **Backtest sobre julio.** Correr el pipeline sobre los 32 eventos de
-   julio como si no supiera los `checked_in`, comparar predicho vs real,
-   calibrar `k_sigma` y factores empíricamente.
-2. **Deduplicar personas en Boom.** Vi al menos un caso de duplicado
-   probable durante EDA; consolidar antes del matching subiría la cobertura
-   sin perder precisión.
-3. **Regla de las 2 entradas máx.** Aplicar el cap v2 ("nadie más de 2
-   entradas para el mismo evento") — hoy si alguien tiene 3+ con match
-   Boom, cuento las 3 con la misma prob individual; debería atenuar la 3ª.
-4. **Curva de llegada.** Con `checked_in_at` de julio → estimar distribución
-   horaria por venue y armar el "link efímero" con personal sugerido en
-   ventanas de 30 min. Es la única de las extras que dijeron.
+1. **Empujar la cobertura del matching sin bajar precisión.** Hoy 63% de
+   sales van a `matches.csv`; sospecho que ~10 puntos más son alcanzables
+   con: (a) coincidencia por token+ciudad+canal sin phone (regla 0.75),
+   (b) fuzzy matching sobre `first_name+last_name` de Boom con nombre de
+   FT invertido. Requiere validar el precision drop con un gold set.
+2. **Regla de las 2 entradas máx (v2).** Si una persona (mismo boom_user)
+   aparece con 3+ tickets para el mismo evento, atenuar la 3ª — hoy la
+   cuento con la misma prob individual y sobreestimo un pico.
+3. **Curva de llegada.** Con `checked_in_at` de julio, distribuir la
+   asistencia esperada en ventanas de 30 min por venue, y construir el
+   "link efímero" con personal sugerido — la extra que se pide.
+4. **Feature: canal + anticipación.** `channel=RRPP` y compras del mismo
+   día probablemente tienen assistance-rate distinta a `WEB` con 2
+   semanas de anticipación. No lo modelé y podría cerrar el MAPE de 11%.

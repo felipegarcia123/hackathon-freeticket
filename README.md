@@ -11,10 +11,15 @@ npx github:LucasLeguizamo/hackathon-freeticket setup TU-NOMBRE
 
 # 2. Todo el pipeline
 bash run.sh
+
+# 3. (Opcional) La web para la puerta — un link para el viernes
+python3 -m http.server 8000
+# abre http://localhost:8000
 ```
 
-Genera `matches.csv` y `forecast.csv` en la raíz. Requiere `node` (para el CLI)
-y `python3`. Cero dependencias Python extra — solo librería estándar.
+Genera `matches.csv`, `forecast.csv` y `data.json` en la raíz. Requiere `node`
+(para el CLI) y `python3`. Cero dependencias Python extra — solo librería
+estándar. Cero build para la web — HTML+CSS+JS en un solo archivo.
 
 ## Salidas
 
@@ -23,6 +28,11 @@ y `python3`. Cero dependencias Python extra — solo librería estándar.
   falso match ensucia el forecast.
 - **`forecast.csv`** — `event_id, expected_attendance, p10, p90` para los 30
   eventos de agosto, sobre los tickets ya adquiridos.
+- **`data.json`** — mismo forecast enriquecido con título, venue, fecha,
+  personal sugerido en puerta (1 persona por cada 80 asistentes esperados).
+  Alimenta la web.
+- **`index.html`** — tablero para la puerta: 30 tarjetas con esperado,
+  rango, personal sugerido. Filtros por ciudad, texto y solo-residencias.
 
 ## Cómo se piensa
 

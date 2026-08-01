@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aforo agosto — FreeTicket</title>
+<style>
+  :root {
+    --bg: #0b0b0f;
+    --card: #16161d;
+    --card-border: #24242e;
+    --text: #ececf1;
+    --dim: #8b8b98;
+    --accent: #7ee787;
+    --warn: #f2cc60;
+    --danger: #ff7b72;
+    --paid: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+  }
+  header {
+    padding: 32px 24px 16px; max-width: 1200px; margin: 0 auto;
+  }
+  header h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; }
+  header p { margin: 0; color: var(--dim); font-size: 14px; }
+  .summary {
+    display: flex; gap: 24px; padding: 16px 24px; max-width: 1200px; margin: 0 auto;
+    border-bottom: 1px solid var(--card-border); flex-wrap: wrap;
+  }
+  .summary div span { display: block; font-size: 22px; font-weight: 600; color: var(--text); }
+  .summary div small { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .filters {
+    padding: 16px 24px; max-width: 1200px; margin: 0 auto;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  .filters input, .filters select {
+    background: var(--card); border: 1px solid var(--card-border); color: var(--text);
+    padding: 8px 12px; border-radius: 6px; font-size: 14px;
+  }
+  .filters input { min-width: 220px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px; padding: 16px 24px 48px; max-width: 1200px; margin: 0 auto;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .card header.card-h {
+    padding: 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  }
+  .card h2 { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .badge {
+    font-size: 10px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;
+    letter-spacing: 0.5px; white-space: nowrap;
+  }
+  .badge.res { background: rgba(126,231,135,0.15); color: var(--accent); }
+  .meta { color: var(--dim); font-size: 12px; }
+  .expected-row {
+    display: flex; align-items: baseline; gap: 12px; padding: 8px 0 4px;
+    border-top: 1px solid var(--card-border);
+  }
+  .expected {
+    font-size: 34px; font-weight: 700; letter-spacing: -1px;
+  }
+  .of-sold { color: var(--dim); font-size: 12px; }
+  .range { color: var(--warn); font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+  .bar {
+    height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0; background: var(--paid); border-radius: 3px;
+  }
+  .bar-range {
+    position: absolute; top: 0; bottom: 0; background: rgba(242,204,96,0.35);
+  }
+  .bar-legend {
+    display: flex; justify-content: space-between; font-size: 11px; color: var(--dim);
+  }
+  .staff {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 8px; border-top: 1px solid var(--card-border);
+    font-size: 13px;
+  }
+  .staff strong { color: var(--text); font-weight: 600; }
+  footer {
+    text-align: center; color: var(--dim); font-size: 12px; padding: 24px;
+    border-top: 1px solid var(--card-border);
+  }
+  a { color: var(--paid); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .error { padding: 24px; color: var(--danger); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Aforo esperado — agosto 2026</h1>
+  <p>Proyección de asistencia por evento sobre los tickets ya vendidos. Rango <strong style="color:var(--warn)">p10–p90</strong> = 80% de probabilidad de caer dentro (calibrado con backtest sobre julio).</p>
+</header>
+
+<div class="summary" id="summary"></div>
+
+<div class="filters">
+  <input id="q" placeholder="Filtrar por título, venue, artista o ciudad…" autocomplete="off">
+  <select id="ciudad"><option value="">Todas las ciudades</option></select>
+  <label style="color:var(--dim);font-size:13px;display:flex;gap:6px;align-items:center;">
+    <input type="checkbox" id="soloResidencia"> Solo residencias
+  </label>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  Datos generados por <code>bash run.sh</code>. Ver <a href="./NOTAS.md">NOTAS.md</a> para metodología ·
+  <a href="https://github.com/felipegarcia123/hackathon-freeticket">repo</a>
+</footer>
+
+<script>
+const monthNames = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const day = String(d.getUTCDate()).padStart(2,'0');
+  const mo = monthNames[d.getUTCMonth()];
+  const h = String(d.getUTCHours()).padStart(2,'0');
+  const m = String(d.getUTCMinutes()).padStart(2,'0');
+  return `${day} ${mo} · ${h}:${m}`;
+}
+
+function card(e) {
+  const soldPct = e.tickets_sold > 0 ? (e.expected_attendance / e.tickets_sold) * 100 : 0;
+  const p10Pct  = e.tickets_sold > 0 ? (e.p10 / e.tickets_sold) * 100 : 0;
+  const p90Pct  = e.tickets_sold > 0 ? (e.p90 / e.tickets_sold) * 100 : 0;
+  const rangeWidth = Math.max(0, p90Pct - p10Pct);
+  return `
+    <article class="card">
+      <header class="card-h">
+        <h2>${e.title || e.artist}</h2>
+        ${e.is_residency ? '<span class="badge res">Residencia</span>' : ''}
+      </header>
+      <div class="meta">${fmtDate(e.starts_at)} · ${e.venue}, ${e.city}</div>
+      <div class="expected-row">
+        <div class="expected">${e.expected_attendance}</div>
+        <div class="of-sold">esperados<br>de ${e.tickets_sold} vendidos</div>
+        <div style="margin-left:auto" class="range">${e.p10}–${e.p90}</div>
+      </div>
+      <div class="bar" title="Rango p10-p90 en amarillo, esperado en azul">
+        <div class="bar-range" style="left:${p10Pct}%;width:${rangeWidth}%"></div>
+        <div class="bar-fill" style="width:${soldPct}%"></div>
+      </div>
+      <div class="bar-legend"><span>0</span><span>${e.tickets_sold} tickets</span></div>
+      <div class="staff">
+        <span style="color:var(--dim)">Personal sugerido puerta</span>
+        <strong>${e.staff_puerta}</strong>
+      </div>
+    </article>
+  `;
+}
+
+let ALL = [];
+function render() {
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  const ciudad = document.getElementById('ciudad').value;
+  const soloRes = document.getElementById('soloResidencia').checked;
+  const filtered = ALL.filter(e => {
+    if (ciudad && e.city !== ciudad) return false;
+    if (soloRes && !e.is_residency) return false;
+    if (q) {
+      const hay = `${e.title} ${e.venue} ${e.artist} ${e.city}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  document.getElementById('grid').innerHTML = filtered.map(card).join('');
+  // resumen
+  const totalExp = filtered.reduce((s,e) => s + e.expected_attendance, 0);
+  const totalSold = filtered.reduce((s,e) => s + e.tickets_sold, 0);
+  const totalStaff = filtered.reduce((s,e) => s + e.staff_puerta, 0);
+  const pct = totalSold > 0 ? (totalExp/totalSold*100).toFixed(1) : 0;
+  document.getElementById('summary').innerHTML = `
+    <div><span>${filtered.length}</span><small>eventos</small></div>
+    <div><span>${totalSold.toLocaleString()}</span><small>tickets vendidos</small></div>
+    <div><span>${totalExp.toLocaleString()}</span><small>asistencia esperada</small></div>
+    <div><span>${pct}%</span><small>tasa esperada</small></div>
+    <div><span>${totalStaff}</span><small>personal total sugerido</small></div>
+  `;
+}
+
+fetch('./data.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    ALL = data;
+    const ciudades = [...new Set(data.map(e => e.city))].sort();
+    const sel = document.getElementById('ciudad');
+    ciudades.forEach(c => {
+      const o = document.createElement('option');
+      o.value = c; o.textContent = c; sel.appendChild(o);
+    });
+    document.getElementById('q').addEventListener('input', render);
+    document.getElementById('ciudad').addEventListener('change', render);
+    document.getElementById('soloResidencia').addEventListener('change', render);
+    render();
+  })
+  .catch(err => {
+    document.body.insertAdjacentHTML('beforeend',
+      `<div class="error">No se pudo cargar <code>data.json</code>: ${err.message}. Corre <code>bash run.sh</code> primero, y sirve la carpeta con <code>python3 -m http.server 8000</code>.</div>`);
+  });
+</script>
+</body>
+</html>

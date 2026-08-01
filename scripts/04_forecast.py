@@ -212,6 +212,38 @@ with OUT.open("w", newline="") as f:
     for row in rows_out:
         w.writerow(row)
 
+# ------------------------------------------------------------------ JSON enriquecido para la web (raw/ no se sube al repo)
+import json
+STAFF_PER = 80  # 1 persona en puerta por cada 80 asistentes esperados
+web_rows = []
+row_by_eid = {r[0]: r for r in rows_out}
+for eid, e in events.items():
+    if e["month"] != "agosto" or eid not in row_by_eid:
+        continue
+    _, expected, p10, p90 = row_by_eid[eid]
+    tickets_sold = int(e.get("tickets_sold") or 0)
+    capacity = int(e.get("capacity") or 0)
+    staff = max(2, math.ceil(expected / STAFF_PER))
+    web_rows.append({
+        "event_id": eid,
+        "title": e.get("title", ""),
+        "artist": e.get("artist_name", ""),
+        "venue": e.get("venue", ""),
+        "city": e.get("city", ""),
+        "starts_at": e.get("starts_at", ""),
+        "weekday": e.get("weekday", ""),
+        "capacity": capacity,
+        "tickets_sold": tickets_sold,
+        "expected_attendance": expected,
+        "p10": p10,
+        "p90": p90,
+        "staff_puerta": staff,
+        "is_residency": e.get("is_residency") == "true",
+    })
+web_rows.sort(key=lambda r: r["starts_at"])
+(ROOT / "data.json").write_text(json.dumps(web_rows, ensure_ascii=False, indent=2))
+
 print(f"[fc] {len(rows_out)} eventos de agosto proyectados", file=sys.stderr)
 print(f"[fc] mix por tipo: {dict(diag_counter)}", file=sys.stderr)
 print(f"[fc] escrito {OUT}", file=sys.stderr)
+print(f"[fc] escrito {ROOT / 'data.json'} ({len(web_rows)} eventos para la web)", file=sys.stderr)

@@ -1,0 +1,8 @@
+.ft-hack.json
+raw/
+cleaned/
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
